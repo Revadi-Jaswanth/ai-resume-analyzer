@@ -83,7 +83,7 @@ Resumes are evaluated out of **100 total points** distributed across 8 weighted 
 
 ## 🔑 Environment Variables Setup
 
-For local development, copy `.env.example` to `.env` and add your key:
+For local development, add your key to `.env`:
 
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
