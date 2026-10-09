@@ -25,7 +25,7 @@ load_dotenv()
 
 # ── Page Config ──────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="AI Resume Analyzer | Better Resume. Brighter Future.",
+    page_title="AI Resume Analyzer",
     page_icon="📄",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -506,7 +506,7 @@ def main():
     st.markdown("""
     <div class="app-footer">
         <p>© 2026 AI RESUME ANALYZER | "Better Resume. Brighter Future."</p>
-        <p>Powered by OpenAI & Advanced NLP</p>
+        <p>Developed by Revadi Naga Sai Jaswanth</p>
     </div>""", unsafe_allow_html=True)
 
 
