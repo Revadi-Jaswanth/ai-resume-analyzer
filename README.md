@@ -83,14 +83,14 @@ Resumes are evaluated out of **100 total points** distributed across 8 weighted 
 
 ## 🔑 Environment Variables Setup
 
-Create a `.env` file in the root directory based on `.env.example`:
+For local development, copy `.env.example` to `.env` and add your key:
 
 ```env
 OPENAI_API_KEY=your_openai_api_key_here
 OPENAI_MODEL=gpt-4o-mini
 ```
 
-*Note: If no API key is provided, the application automatically uses its built-in NLP Heuristic Engine.*
+Never commit `.env` or paste a real API key into source control. The repository includes only the safe `.env.example` template. If no API key is provided, the application automatically uses its built-in NLP Heuristic Engine.
 
 ---
 
@@ -127,6 +127,24 @@ streamlit run app.py
 
 The application will launch automatically in your web browser at `http://localhost:8501`.
 
+### Deployment Environment Variables
+
+Set these values in your hosting provider's environment-variable or secrets settings; do not upload the local `.env` file:
+
+```text
+OPENAI_API_KEY=<your real OpenAI API key>
+OPENAI_MODEL=gpt-4o-mini
+```
+
+For Streamlit Community Cloud, open the app's **Settings → Secrets** and add the same values in TOML format:
+
+```toml
+OPENAI_API_KEY = "your real OpenAI API key"
+OPENAI_MODEL = "gpt-4o-mini"
+```
+
+The application reads these variables at startup with `python-dotenv`. The real key stays in the deployment platform's secret store while the code remains safe to publish.
+
 ---
 
 ## 📖 How to Use
@@ -141,7 +159,7 @@ The application will launch automatically in your web browser at `http://localho
 ## 🛡️ Security & Best Practices
 
 - **In-Memory Processing**: Uploaded documents are parsed in memory and never permanently stored on disk or database.
-- **Environment Isolation**: Sensitive credentials like API keys are kept strictly in `.env` files.
+- **Environment Isolation**: Sensitive credentials like API keys are kept in local `.env` files or the deployment platform's secret store, never in Git.
 - **Input Sanitization**: User text inputs and extracted file text are sanitized before processing.
 
 ---
