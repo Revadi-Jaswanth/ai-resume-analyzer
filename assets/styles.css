@@ -1,0 +1,515 @@
+/* ==========================================================================
+   AI RESUME ANALYZER - PREMIUM DARK/RED CYBERPUNK THEME
+   ========================================================================== */
+
+/* Main App Container Styling */
+.stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
+    background-color: #08090D !important;
+    color: #E0E0E0 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* Hide default Streamlit padding & header clutter if needed */
+.block-container {
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+    max-width: 1250px !important;
+}
+
+/* --------------------------------------------------------------------------
+   NAVBAR & HERO SECTION
+   -------------------------------------------------------------------------- */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 23, 68, 0.2);
+    margin-bottom: 2rem;
+}
+
+.app-title-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.app-title-badge h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.app-tagline {
+    color: #FF1744;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.hero-banner {
+    background: linear-gradient(135deg, rgba(255, 23, 68, 0.08) 0%, rgba(18, 20, 28, 0.8) 100%);
+    border: 1px solid rgba(255, 23, 68, 0.25);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 23, 68, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 23, 68, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.hero-title {
+    font-size: 2.6rem !important;
+    font-weight: 900 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 0.5rem !important;
+    letter-spacing: -1px;
+}
+
+.hero-title span {
+    color: #FF1744;
+    text-shadow: 0 0 15px rgba(255, 23, 68, 0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.15rem !important;
+    color: #E5E7EB !important;
+    max-width: 700px;
+    margin: 0.5rem auto 1.5rem auto !important;
+    line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   GLASSMORPHISM CARDS (Applied to native Streamlit bordered containers)
+   -------------------------------------------------------------------------- */
+[data-testid="stVerticalBlockBorderWrapper"], .glass-card {
+    background: rgba(18, 20, 28, 0.75) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border: 1px solid rgba(255, 23, 68, 0.18) !important;
+    border-radius: 14px !important;
+    padding: 1.5rem !important;
+    margin-bottom: 1.25rem !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+}
+
+[data-testid="stVerticalBlockBorderWrapper"]:hover, .glass-card:hover {
+    border-color: rgba(255, 23, 68, 0.4) !important;
+    box-shadow: 0 6px 25px rgba(255, 23, 68, 0.15) !important;
+}
+
+.card-title {
+    color: #FFFFFF;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   CIRCULAR SCORE DISPLAY & METRICS
+   -------------------------------------------------------------------------- */
+.score-hero-card {
+    background: linear-gradient(145deg, #12141C 0%, #1A1D28 100%);
+    border: 2px solid rgba(255, 23, 68, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 23, 68, 0.1);
+}
+
+.score-circle-outer {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 1rem auto;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #08090D 62%, transparent 63%),
+                conic-gradient(#FF1744 calc(var(--score) * 1%), #222533 0);
+    box-shadow: 0 0 25px rgba(255, 23, 68, 0.3);
+}
+
+.score-circle-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.score-number {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    line-height: 1;
+}
+
+.score-max {
+    font-size: 0.9rem;
+    color: #8E92A8;
+    font-weight: 600;
+}
+
+.score-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.score-label-excellent { color: #00E676; }
+.score-label-good { color: #00E5FF; }
+.score-label-average { color: #FFD600; }
+.score-label-poor { color: #FF1744; }
+
+/* Category Metric Bar */
+.cat-metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.cat-metric-name {
+    font-weight: 600;
+    color: #F3F4F6;
+    font-size: 1rem;
+}
+
+.cat-metric-val {
+    font-weight: 700;
+    color: #FF1744;
+    font-size: 1rem;
+}
+
+.progress-bar-bg {
+    background-color: #1A1D28;
+    border-radius: 8px;
+    height: 8px;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-bar-fill {
+    background: linear-gradient(90deg, #D50000 0%, #FF1744 100%);
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.6s ease;
+}
+
+/* --------------------------------------------------------------------------
+   BADGES & PILLS
+   -------------------------------------------------------------------------- */
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 0.5rem;
+}
+
+.badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.2px;
+}
+
+.badge-success {
+    background: rgba(0, 230, 118, 0.12);
+    color: #00E676;
+    border: 1px solid rgba(0, 230, 118, 0.3);
+}
+
+.badge-danger {
+    background: rgba(255, 23, 68, 0.12);
+    color: #FF1744;
+    border: 1px solid rgba(255, 23, 68, 0.3);
+}
+
+.badge-neutral {
+    background: rgba(255, 255, 255, 0.08);
+    color: #E0E0E0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.badge-warning {
+    background: rgba(255, 214, 0, 0.12);
+    color: #FFD600;
+    border: 1px solid rgba(255, 214, 0, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   LISTS & CHECKBOXES
+   -------------------------------------------------------------------------- */
+.feature-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.feature-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.feature-list li:last-child {
+    border-bottom: none;
+}
+
+.icon-check {
+    color: #00E676;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.icon-alert {
+    color: #FF1744;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.icon-bullet {
+    color: #FF1744;
+    flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   STREAMLIT NATIVE OVERRIDES
+   -------------------------------------------------------------------------- */
+/* Buttons */
+.stButton > button {
+    background: linear-gradient(135deg, #D50000 0%, #FF1744 100%) !important;
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 0.8rem 2rem !important;
+    min-height: 3rem !important;
+    font-size: 1.08rem !important;
+    box-shadow: 0 4px 15px rgba(255, 23, 68, 0.3) !important;
+    transition: all 0.2s ease-in-out !important;
+    width: 100%;
+}
+
+/* Navigation and native labels need enough contrast against the dark theme. */
+[data-testid="stRadio"] label,
+[data-testid="stRadio"] label p {
+    color: #F3F4F6 !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+}
+
+[data-testid="stCaptionContainer"] p,
+.stMarkdown p,
+.stMarkdown li {
+    color: #E5E7EB !important;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(135deg, #FF1744 0%, #FF5252 100%) !important;
+    box-shadow: 0 6px 20px rgba(255, 23, 68, 0.5) !important;
+    transform: translateY(-2px);
+}
+
+.stButton > button:active {
+    transform: translateY(0);
+}
+
+/* Secondary Button */
+div[data-testid="stForm"] .stButton > button,
+.secondary-btn > button {
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 23, 68, 0.4) !important;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 8px !important;
+    background-color: rgba(18, 20, 28, 0.6) !important;
+    padding: 6px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 23, 68, 0.15) !important;
+}
+
+.stTabs [data-baseweb="tab"],
+.stTabs button,
+[data-testid="stTabs"] button {
+    height: 44px !important;
+    white-space: pre !important;
+    border-radius: 8px !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    opacity: 1 !important;
+    font-weight: 600 !important;
+    border: none !important;
+    padding: 0 16px !important;
+}
+
+.stTabs [data-baseweb="tab"] *,
+.stTabs [data-baseweb="tab"] p,
+.stTabs [data-baseweb="tab"] span,
+.stTabs [data-baseweb="tab"] div,
+.stTabs button *,
+[data-testid="stTabs"] button * {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    opacity: 1 !important;
+    font-size: 0.98rem !important;
+}
+
+.stTabs [aria-selected="true"],
+.stTabs button[aria-selected="true"],
+[data-testid="stTabs"] button[aria-selected="true"] {
+    background-color: #FF1744 !important;
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    box-shadow: 0 4px 12px rgba(255, 23, 68, 0.3) !important;
+}
+
+.stTabs [aria-selected="true"] *,
+.stTabs [aria-selected="true"] p,
+.stTabs [aria-selected="true"] span {
+    color: #FFFFFF !important;
+}
+
+.stTabs [data-baseweb="tab"]:hover,
+.stTabs button:hover,
+[data-testid="stTabs"] button:hover {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+    background-color: rgba(255, 23, 68, 0.22) !important;
+}
+
+/* File Uploader */
+[data-testid="stFileUploader"] {
+    background: rgba(18, 20, 28, 0.6) !important;
+    border: 2px dashed rgba(255, 23, 68, 0.4) !important;
+    border-radius: 14px !important;
+    padding: 1.5rem !important;
+    transition: border 0.3s ease;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: #FF1744 !important;
+}
+
+/* Text Inputs & Textarea */
+.stTextArea textarea, .stTextInput input {
+    background-color: #12141C !important;
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
+    opacity: 1 !important;
+    border: 1px solid rgba(255, 23, 68, 0.25) !important;
+    border-radius: 10px !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+}
+
+.stTextArea textarea:disabled,
+.stTextInput input:disabled {
+    color: #F8FAFC !important;
+    -webkit-text-fill-color: #F8FAFC !important;
+    opacity: 1 !important;
+}
+
+.stTextArea textarea:focus, .stTextInput input:focus {
+    border-color: #FF1744 !important;
+    box-shadow: 0 0 10px rgba(255, 23, 68, 0.2) !important;
+}
+
+/* Metrics */
+[data-testid="stMetricValue"] {
+    color: #FF1744 !important;
+    font-weight: 800 !important;
+}
+
+[data-testid="stMetricLabel"] {
+    color: #D1D5DB !important;
+    font-weight: 600 !important;
+}
+
+.stMarkdown h1,
+.stMarkdown h2,
+.stMarkdown h3,
+.stMarkdown h4,
+.stMarkdown h5,
+.stMarkdown h6 {
+    color: #F8FAFC !important;
+}
+
+/* Expanders */
+[data-testid="stExpander"] {
+    background-color: #12141C !important;
+    border: 1px solid rgba(255, 23, 68, 0.35) !important;
+    border-radius: 10px !important;
+}
+
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] summary p,
+.streamlit-expanderHeader {
+    background-color: #12141C !important;
+    border: 1px solid rgba(255, 23, 68, 0.2) !important;
+    border-radius: 8px !important;
+    color: #F8FAFC !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="stExpander"] summary svg {
+    fill: #F8FAFC !important;
+    color: #F8FAFC !important;
+}
+
+[data-testid="stExpander"] [data-testid="stTextArea"] label,
+[data-testid="stExpander"] [data-testid="stTextArea"] label p {
+    color: #F8FAFC !important;
+}
+
+/* Footer */
+.app-footer {
+    text-align: center;
+    padding: 2rem 0 1rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255, 23, 68, 0.15);
+    color: #71768A;
+    font-size: 0.85rem;
+}
+
+.app-footer a {
+    color: #FF1744;
+    text-decoration: none;
+}
